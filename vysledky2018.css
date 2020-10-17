@@ -1,0 +1,67 @@
+.obrazok img{
+    height:50px;
+    weight:50px;
+    margin-right: 10px;
+}
+
+.domov-tlacidlo{
+
+}
+
+.nadpis-dbtsp{
+    font-size: xx-large;
+    font-weight: bold;
+    color: dimgrey;
+    font-family: 'Patua One', cursive;
+}
+
+.nadpis-dbtsp:hover{
+    color: teal;
+
+}
+
+
+.menu li a{
+    font-family: 'Patua One', cursive;
+    font-size: large;
+    font-weight: bold;
+    color:grey;
+}
+
+.menu li a:hover{
+    color:cadetblue;
+}
+
+.active {
+    color: teal;
+    border-bottom: 3px solid gray;
+}
+
+.nav-item:hover {
+    border-bottom: 3px solid cadetblue;
+}
+
+.telo{
+    background-color: cadetblue;
+}
+
+.nadpis{
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.text{
+    font-size: 18px;
+    line-height: 28px;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: dimgrey;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: whitesmoke;
+}
+
+.sipka:hover{
+    background-color: gray ;
+    opacity: 40%;
+}
