@@ -1,18 +1,17 @@
 .obrazok img{
     height:60px;
-    weight:auto;
     margin-right: 10px;
 }
 
 .nadpis-dbtsp {
     font-size: 200%;
-    color: dimgrey;
+    color: #696969;
     font-weight: bold;
     font-family: 'DM Serif Text', serif;
 }
 
 .nadpis-dbtsp:hover{
-    color: teal;
+    color: #008080;
 }
 
 
@@ -20,20 +19,20 @@
     font-family: 'DM Serif Text', serif;
     font-size: 120%;
     font-weight: bold;
-    color:grey;
+    color:#808080;
 }
 
 .menu li a:hover{
-    color:cadetblue;
+    color:#5f9ea0;
 }
 
 .active {
-    color: teal;
-    border-bottom: 3px solid gray;
+    color: #008080;
+    border-bottom: 3px solid #808080;
 }
 
 .nav-item:hover {
-    border-bottom: 3px solid cadetblue;
+    border-bottom: 3px solid #5f9ea0;
 }
 
 .logo2{
@@ -57,27 +56,20 @@
     margin-right: auto;
 }
 
-@media only screen and (max-width: 991px) {
-    [class*="logo2"] {
-        margin-top: 100px;
-        width: 250px;
-        height: 250px;
-    }
-}
 
 .telo{
-    background-color: cadetblue;
+    background-color: #5f9ea0;
 }
 
-.text-propozicie{
+.text{
     font-size: 18px;
     line-height: 28px;
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: dimgrey;
+    color: #696969;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    background-color: whitesmoke;
+    background-color: #f5f5f5;
 }
 
 .nadpis-prop{
@@ -99,22 +91,28 @@
     margin-left: 8.5%;
 }
 
-@media only screen and (max-width: 991px) {
-    [class*="table"] {
-        margin-left: 0%;
+@media screen and (max-width: 991px) {
+    .table {
+        margin-left: 0;
         display: block;
     }
 
     .nadpis-dbtsp {
         font-size: 200%;
     }
+
+    .logo2 {
+        margin-top: 100px;
+        width: 250px;
+        height: 250px;
+    }
 }
+
 
 .back-button{
     margin-top: 20px;
     display: block;
     height: 70px;
-    alignment: center;
     margin-left: auto;
     margin-right: auto;
 }
@@ -125,16 +123,6 @@
     margin-bottom: 10px;
 }
 
-.textVysledky{
-    font-size: 18px;
-    line-height: 28px;
-    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: dimgrey;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: whitesmoke;
-}
 
 .sipky-spolu{
     display: block;
@@ -151,7 +139,7 @@
 
 .sipka:hover{
 
-    background-color: gray ;
-    opacity: 40%;
+    background-color: #a6a6a6 ;
+
 }
 
