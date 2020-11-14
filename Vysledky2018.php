@@ -21,43 +21,9 @@
 </head>
 <body class="telo">
 
-<nav class="navbar navbar-expand-lg bg-light obrazok">
-    <img src="http://www.detvabehataksapridaj.6f.sk/assets/images/logo.png" alt="logo">
-    <a class="navbar-brand nadpis-dbtsp" href="http://dbtsp.jecool.net/"> Detva behá, tak sa pridaj!
-    </a>
-    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-            class="navbar-toggler navbar-light " data-target="#navbarSupportedContent" data-toggle="collapse"
-            type="button">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto menu">
-            <li class="nav-item ">
-                <a class="nav-link domov-tlacidlo" href="http://dbtsp.jecool.net/">Domov <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item ">
-                <a aria-disabled="true" class="nav-link " href="http://dbtsp.jecool.net/propozicie.html" tabindex="-1">Propozície</a>
-            </li>
-            <li class="nav-item dropdown active">
-                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
-                   href="#"
-                   id="navbarDropdown" role="button">
-                    Výsledky
-                </a>
-                <div aria-labelledby="navbarDropdown" class="dropdown-menu ">
-                    <a class="dropdown-item" href="http://dbtsp.jecool.net/Vysledky2019.html">Ročník 2019</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="http://dbtsp.jecool.net/Vysledky2018.html">Ročník 2018</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a aria-disabled="true" class="nav-link " href="http://dbtsp.jecool.net/PridajSa.html" tabindex="-1">Pridaj sa!</a>
-            </li>
-        </ul>
-
-    </div>
-</nav>
+<?php
+include 'header.php'
+?>
 
 <div class="col-lg-8 text">
     <br><br>
@@ -93,9 +59,9 @@
         </a>
     </div>
     <div >
-        <a href=" http://dbtsp.jecool.net/Vysledky2018.html">
-            <img class="back-button" src="https://1.bp.blogspot.com/-kNaEH7wSbrY/U_pAwNgPnzI/AAAAAAAAAMM/_bInt3Kx2jk/s1600/zxTgkLXiA.png" alt="up"> <br>
-        </a>
+        <?php
+        include 'footer.php'
+        ?>
     </div>
 </div>
 

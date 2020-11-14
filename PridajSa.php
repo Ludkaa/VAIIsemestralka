@@ -21,45 +21,9 @@
 </head>
 <body class="telo">
 
-<nav class="navbar navbar-expand-lg bg-light obrazok">
-    <img src="http://www.detvabehataksapridaj.6f.sk/assets/images/logo.png" alt="logo">
-    <a class="navbar-brand nadpis-dbtsp" href="http://dbtsp.jecool.net/"> Detva behá, tak sa pridaj!
-    </a>
-    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-            class="navbar-toggler navbar-light " data-target="#navbarSupportedContent" data-toggle="collapse"
-            type="button">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto menu">
-            <li class="nav-item ">
-                <a class="nav-link domov-tlacidlo" href="http://dbtsp.jecool.net/">Domov <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item ">
-                <a aria-disabled="true" class="nav-link " href="http://dbtsp.jecool.net/propozicie.html" tabindex="-1">Propozície</a>
-            </li>
-            <li class="nav-item dropdown ">
-                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
-                   href="#"
-                   id="navbarDropdown" role="button">
-                    Výsledky
-                </a>
-                <div aria-labelledby="navbarDropdown" class="dropdown-menu ">
-                    <a class="dropdown-item" href="http://dbtsp.jecool.net/Vysledky2019.html">Ročník 2019</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="http://dbtsp.jecool.net/Vysledky2018.html">Ročník 2018</a>
-                </div>
-            </li>
-            <li class="nav-item active">
-                <a aria-disabled="true" class="nav-link " href="http://dbtsp.jecool.net/PridajSa.html" tabindex="-1">Pridaj sa!</a>
-            </li>
-        </ul>
-
-    </div>
-</nav>
-
-
+<?php
+include 'header.php'
+?>
 
 
 <div class="col-lg-8 text">
@@ -69,13 +33,13 @@
         <br>
     </div>
 
-    <form>
-        <div class="form-row col-md-12 ">
-            <div class="form-group col-md-6">
+    <form id="form">
+        <div class="form-row col-lg-10 stred">
+            <div class="form-group col-lg-6">
                 <label><b>Meno</b></label>
                 <input type="text" class="form-control" placeholder="Meno " name="meno" required>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-lg-6">
                 <label><b>Priezvisko</b></label>
                 <input type="text" class="form-control" placeholder="Priezvisko " name="priezvisko" required>
             </div>
@@ -85,20 +49,22 @@
             </div>
             <div class="form-group col-md-12">
                 <label for="inputEmail4"><b>Email</b></label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" required>
             </div>
             <fieldset class="form-group col-md-12">
                 <div class="row">
                     <div class="col-form-label col-sm-2 pt-0"><b>Dĺžka trate</b></div>
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                            <input class="form-check-input" type="radio" name="dlzkaTrate" id="gridRadios1"
+                                   value="option1" checked>
                             <label class="form-check-label" for="gridRadios1">
                                 4,5 km
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                            <input class="form-check-input" type="radio" name="dlzkaTrate" id="gridRadios2"
+                                   value="option2">
                             <label class="form-check-label" for="gridRadios2">
                                 12,5 km
                             </label>
@@ -106,9 +72,9 @@
                     </div>
                 </div>
             </fieldset>
-            <div class="form-group col-md-12"> <br>
+            <div class="form-group col-md-12"><br>
                 <div class="form-check col-md-12 ">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                    <input class="form-check-input" type="checkbox" id="gridCheck" value="true" name="suhlas" required>
                     <label class="form-check-label" for="gridCheck">
                         Súhlasím so spracovaním svojich údajov pre potreby organizátora.
                     </label>
@@ -122,15 +88,80 @@
     </form>
     <br><br>
 
-    <div >
-        <a href=" http://dbtsp.jecool.net/PridajSa.html">
-            <img class="back-button" src="https://1.bp.blogspot.com/-kNaEH7wSbrY/U_pAwNgPnzI/AAAAAAAAAMM/_bInt3Kx2jk/s1600/zxTgkLXiA.png" alt="up"> <br>
-        </a>
+    <div class="col-lg-8 text">
+        <div class="text-center">
+            <br>
+            <h2 class="nadpis"><strong> Zoznam prihlásených: </strong></h2>
+            <br>
+        </div>
     </div>
+
+    <?php
+    include 'footer.php'
+    ?>
 </div>
-
-
 
 
 </body>
 </html>
+
+$(document).ready(function() {
+// Variable to hold request
+var request;
+
+// Bind to the submit event of our form
+$("#foo").submit(function(event){
+
+    // Prevent default posting of form - put here to work in case of errors
+    event.preventDefault();
+
+    // Abort any pending request
+    if (request) {
+        request.abort();
+    }
+    // setup some local variables
+    var $form = $(this);
+
+    // Let's select and cache all the fields
+    var $inputs = $form.find("input, select, button, textarea");
+
+    // Serialize the data in the form
+    var serializedData = $form.serialize();
+
+    // Let's disable the inputs for the duration of the Ajax request.
+    // Note: we disable elements AFTER the form data has been serialized.
+    // Disabled form elements will not be serialized.
+    $inputs.prop("disabled", true);
+
+    // Fire off the request to /form.php
+    request = $.ajax({
+        url: "/form.php",
+        type: "post",
+        data: serializedData
+    });
+
+    // Callback handler that will be called on success
+    request.done(function (response, textStatus, jqXHR){
+        // Log a message to the console
+        console.log("Hooray, it worked!");
+    });
+
+    // Callback handler that will be called on failure
+    request.fail(function (jqXHR, textStatus, errorThrown){
+        // Log the error to the console
+        console.error(
+            "The following error occurred: "+
+            textStatus, errorThrown
+        );
+    });
+
+    // Callback handler that will be called regardless
+    // if the request failed or succeeded
+    request.always(function () {
+        // Reenable the inputs
+        $inputs.prop("disabled", false);
+    });
+
+});
+});
+        action="/FormSent.php" method="post";

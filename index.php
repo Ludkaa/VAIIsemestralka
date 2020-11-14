@@ -16,45 +16,12 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-light obrazok" >
-    <img src="http://www.detvabehataksapridaj.6f.sk/assets/images/logo.png" alt="logo">
-    <a class="navbar-brand nadpis-dbtsp" href="http://dbtsp.jecool.net/"> Detva behá, tak sa pridaj!
-    </a>
-    <button class="navbar-toggler navbar-light " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto menu">
-            <li class="nav-item active">
-                <a class="nav-link domov-tlacidlo" href="http://dbtsp.jecool.net/">Domov <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="http://dbtsp.jecool.net/propozicie.html" tabindex="-1" aria-disabled="true">Propozície</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Výsledky
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="http://dbtsp.jecool.net/Vysledky2019.html">Ročník 2019</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="http://dbtsp.jecool.net/Vysledky2018.html">Ročník 2018</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="http://dbtsp.jecool.net/PridajSa.html" tabindex="-1" aria-disabled="true">Pridaj sa!</a>
-            </li>
-        </ul>
-
-    </div>
-</nav>
+<?php
+    include 'header.php'
+?>
 
 
-
-
-
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="4000" data-pause="false">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="false">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img class="d-block w-100"  src="img/1.jpg" alt="img1" >
@@ -104,13 +71,11 @@
         <iframe class=" embed-responsive-item" src="https://www.youtube.com/embed/jONQjtSeQ4U" allowfullscreen></iframe>
     </div>
 
+<?php
+include 'footer.php'
+?>
 
 
-<div >
-    <a href=" http://dbtsp.jecool.net/">
-        <img class="back-button" src="https://1.bp.blogspot.com/-kNaEH7wSbrY/U_pAwNgPnzI/AAAAAAAAAMM/_bInt3Kx2jk/s1600/zxTgkLXiA.png" alt="up"> <br>
-    </a>
-</div>
 
 </body>
 </html>
