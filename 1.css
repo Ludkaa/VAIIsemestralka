@@ -98,7 +98,7 @@
 
 }
 
-.table{
+.tableP{
     margin-left: 8.5%;
 }
 
@@ -154,3 +154,6 @@
 
 }
 
+.skry{
+    display: none;
+}

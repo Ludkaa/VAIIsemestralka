@@ -73,13 +73,29 @@ if((!empty($_SESSION['valid']))) {
 } else {
     $_SESSION['valid']=0;
 }
+
+
+$url = "https://dbtspapi.herokuapp.com/runner/".$_GET['id'];
+$ch = curl_init();
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url,
+]);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($ch);
+
+$Data = json_decode($response)->data;
+$meno=$Data->meno;
+$priezvisko=$Data->priezvisko;
+$datum=$Data->birthday;
+$email=$Data->email;
+$trat=$Data->trat;
 ?>
 
 
 <div class="col-lg-8 text">
     <div class="text-center">
         <br>
-        <h2 class="nadpis"><strong> Pridaj sa! </strong></h2>
+        <h2 class="nadpis"><strong> Editovanie účastníka </strong></h2>
         <br>
     </div>
 
@@ -87,35 +103,35 @@ if((!empty($_SESSION['valid']))) {
         <div class="form-row col-lg-10 stred">
             <div class="form-group col-lg-6">
                 <label><b>Meno</b></label>
-                <input type="text" class="form-control" placeholder="Meno " name="meno" required>
+                <input type="text" class="form-control" placeholder="Meno " name="meno" value="<?php echo $meno ?>" required>
             </div>
             <div class="form-group col-lg-6">
                 <label><b>Priezvisko</b></label>
-                <input type="text" class="form-control" placeholder="Priezvisko " name="priezvisko" required>
+                <input type="text" class="form-control" placeholder="Priezvisko " name="priezvisko" value="<?php echo $priezvisko ?>" required>
             </div>
             <div class="form-group col-md-12">
                 <label><b>Dátum narodenia:</b></label>
-                <input type="date" class="form-control" name="birthday" required>
+                <input type="date" class="form-control" name="birthday" value="<?php echo $datum ?>" required>
             </div>
             <div class="form-group col-md-12">
                 <label for="inputEmail4"><b>Email</b></label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" required>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" value="<?php echo $email ?>" required>
             </div>
             <fieldset class="form-group col-md-12">
                 <div class="row">
                     <div class="col-form-label col-sm-2 pt-0"><b>Dĺžka trate</b></div>
                     <div class="col-sm-10">
-                        <div class="form-check" >
+                        <div class="form-check">
                             <input class="form-check-input" type="radio" name="trat" id="gridRadios1"
-                                   value="4,5 km" required>
-                            <label class="form-check-label" for="gridRadios1" >
+                                   value="4,5 km" <?php if(('4,5 km' == $trat)) { echo "checked";} ?> required >
+                            <label class="form-check-label" for="gridRadios1">
                                 4,5 km
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="trat" id="gridRadios2"
-                                   value="12,5 km" required>
-                            <label class="form-check-label" for="gridRadios2" >
+                                   value="12,5 km" <?php if(('12,5 km' == $trat)) { echo "checked";} ?> required >
+                            <label class="form-check-label" for="gridRadios2">
                                 12,5 km
                             </label>
                         </div>
@@ -124,80 +140,40 @@ if((!empty($_SESSION['valid']))) {
             </fieldset>
             <div class="form-group col-md-12"><br>
                 <div class="form-check col-md-12 ">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" value="true" name="suhlas" required>
+                    <input class="form-check-input" type="checkbox" id="gridCheck" value="true" name="suhlas" checked required>
                     <label class="form-check-label" for="gridCheck">
                         Súhlasím so spracovaním svojich údajov pre potreby organizátora.
                     </label>
                 </div>
             </div>
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary col-md-12">Odoslať</button>
+                <button type="submit" id="" class="btn btn-primary col-md-12">Upraviť</button>
+
+                <script>
+                    $("#edit".click(function (event) {
+                        $.ajax({
+                            type:'PUT',
+                            url: <?php echo $url ?>,
+                            success: function(msg) {
+                                alert("Bežec bol upravený");
+                                location.reload();
+                            },
+                            error: function(e) {
+                                $inputs.prop("disabled", false);
+                                console.log(e);
+                                alert("Nastala chyba");
+                            }
+                        })
+                    })
+                </script>
+
             </div>
         </div>
 
     </form>
     <br><br>
 
-    <div class="col-lg-8 text">
-        <div class="text-center">
-            <br>
-            <h2 class="nadpis"><strong> Zoznam prihlásených: </strong></h2>
-            <br>
-        </div>
-        <table class="table col-lg-10">
-            <?php
-                $url = "https://dbtspapi.herokuapp.com/runners";
-                $ch = curl_init();
-                curl_setopt_array($ch, [
-                    CURLOPT_URL            =>$url,
-                ]);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
 
-                $Data = json_decode($response);
-
-
-                echo "<tr><th></th><th>Meno</th> <th>Priezvisko</th> <th>Dátum narodenia</th> <th>Trať</th>  <th></th> <th> </th></tr>";
-
-                for ($i = 0; $i < sizeof($Data->data); $i++){
-                echo "<tr><td> ".($i+1)." </td><td>" .$Data->data[$i]->meno ."</td> <td>".$Data->data[$i]->priezvisko."</td> <td>".$Data->data[$i]->birthday."</td> <td>".$Data->data[$i]->trat."</td> "?>
-                <td> <a href="http://dbtsp.jecool.net/Edit.php?id=<?php echo $Data->data[$i]->id ?>" id="edit<?php echo $i ?>" type="button" class="btn btn-info <?php if(($_SESSION["valid"] != 1)) { echo "skry";} ?>">Editovať</a>
-
-                </td>
-
-                    <td> <button type="button" id="delete<?php echo $i ?>" class="btn btn-secondary <?php if(($_SESSION["valid"] != 1)) { echo "skry";} ?>">Vymazať</button>
-                        <script>
-                            $("#delete" + <?php echo $i ?>).click(function (event) {
-                                let del_id = "<?php echo $Data->data[$i]->id ?>";
-                                $.ajax({
-                                    type:'DELETE',
-                                    url: "https://dbtspapi.herokuapp.com/runner/"+del_id,
-                                    success: function(msg) {
-                                        alert("Bežec bol odstránený");
-                                        location.reload();
-                                    },
-                                    error: function(e) {
-                                        $inputs.prop("disabled", false);
-                                        console.log(e);
-                                        alert("Nastala chyba");
-                                    }
-                                })
-                            })
-                        </script>
-
-                    </td></tr>
-
-
-
-                    <?php }
-           ?>
-        </table>
-    </div>
-
-    <?php
-    include 'footer.php'
-    ?>
-</div>
 
 
 </body>

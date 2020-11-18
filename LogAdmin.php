@@ -22,7 +22,8 @@
 <body class="telo">
 
 <?php
-include 'header.php'
+include 'header.php';
+$_SESSION['valid'] = 1;
 ?>
 
 
@@ -30,7 +31,7 @@ include 'header.php'
 <div class="col-lg-8 text">
     <div class="text-center">
         <br>
-        <h2 class="nadpis"><strong> Vaše údaje boli odoslané! </strong></h2>
+        <h2 class="nadpis"><strong> Boli ste úspešne prihlásení! </strong></h2>
         <br>
     </div>
 
@@ -40,6 +41,7 @@ include 'header.php'
         window.location.href = "http://dbtsp.jecool.net/PridajSa.php";
     }, 5000);
 </script>
+
 
 
 

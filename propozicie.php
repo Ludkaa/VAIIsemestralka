@@ -32,7 +32,7 @@
     <h3><strong> pretekov "Detva behá, tak sa pridaj!" </strong></h3>
     </div>
     <br>
-    <table class="table col-lg-10 text">
+    <table class="table tableP col-lg-10 text">
         <tr>
             <th><strong>Usporiadatelia: </strong></th>
             <td>Ľudmila Čániová, Lucia Gondášová, OZ Aktívne mesto Detva </td>

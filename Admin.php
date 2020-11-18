@@ -14,6 +14,51 @@
     <script crossorigin="anonymous"
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
             src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            let request;
+
+            function getFormData($form) {
+                let unindexed_array = $form.serializeArray();
+                let indexed_array = {};
+
+                $.map(unindexed_array, function (n, i) {
+                    indexed_array[n['name']] = n['value'];
+                });
+
+                return indexed_array;
+            }
+
+            $("#admin").submit(function (event) {
+
+                event.preventDefault();
+
+                let $form = $(this);
+
+                let $inputs = $form.find("input, select, button, textarea");
+
+                let data = JSON.stringify(getFormData($form));
+
+                $inputs.prop("disabled", true);
+
+                $.ajax({
+                    url: "https://dbtspapi.herokuapp.com/adminlogin",
+                    type: "post",
+                    data: data,
+                    dataType: "json",
+                    success: function(msg) {
+                        window.location.href="/LogAdmin.php";
+                    },
+                    error: function(e) {
+                        $inputs.prop("disabled", false);
+                        console.log(e);
+                        alert("Zadali ste nesprávne meno alebo heslo!");
+                    }
+                });
+            });
+        });
+    </script>
     <link href="http://www.detvabehataksapridaj.6f.sk/assets/images/logo.png" rel="icon" type="image/png">
     <link href="1.css" rel="stylesheet">
 
@@ -34,7 +79,7 @@ include 'header.php'
         <br>
     </div>
 
-    <form action="/Admin.php" method="post">
+    <form id="admin">
         <div class="form-row col-md-5 text">
             <div class="form-group col-md-12">
                 <label><b>Login</b></label>
@@ -42,7 +87,7 @@ include 'header.php'
             </div>
             <div class="form-group col-md-12">
                 <label><b>Heslo</b></label>
-                <input type="text" class="form-control" placeholder="Heslo " name="heslo" required>
+                <input type="password" class="form-control" placeholder="Heslo " name="heslo" required>
             </div>
 
             <div class="col-md-12">
