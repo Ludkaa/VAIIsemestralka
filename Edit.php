@@ -30,7 +30,7 @@
                 return indexed_array;
             }
 
-            $("#form").submit(function (event) {
+            $("#edit").submit(function (event) {
 
                 event.preventDefault();
 
@@ -43,12 +43,13 @@
                 $inputs.prop("disabled", true);
 
                 $.ajax({
-                    url: "https://dbtspapi.herokuapp.com/runner",
-                    type: "post",
+                    url: "<?php echo "https://dbtspapi.herokuapp.com/runner/".$_GET['id']?>",
+                    type: "put",
                     data: data,
                     dataType: "json",
                     success: function(msg) {
-                        window.location.href="/FormSent.php";
+                        alert("Údaje boli upravené");
+                        window.location.href = "/PridajSa.php";
                     },
                     error: function(e) {
                         $inputs.prop("disabled", false);
@@ -99,7 +100,7 @@ $trat=$Data->trat;
         <br>
     </div>
 
-    <form id="form">
+    <form id="edit">
         <div class="form-row col-lg-10 stred">
             <div class="form-group col-lg-6">
                 <label><b>Meno</b></label>
@@ -109,9 +110,9 @@ $trat=$Data->trat;
                 <label><b>Priezvisko</b></label>
                 <input type="text" class="form-control" placeholder="Priezvisko " name="priezvisko" value="<?php echo $priezvisko ?>" required>
             </div>
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-12 ">
                 <label><b>Dátum narodenia:</b></label>
-                <input type="date" class="form-control" name="birthday" value="<?php echo $datum ?>" required>
+                <input type="date" class="form-control " name="birthday" value="<?php echo $datum ?>" required>
             </div>
             <div class="form-group col-md-12">
                 <label for="inputEmail4"><b>Email</b></label>
@@ -147,26 +148,7 @@ $trat=$Data->trat;
                 </div>
             </div>
             <div class="col-md-12">
-                <button type="submit" id="" class="btn btn-primary col-md-12">Upraviť</button>
-
-                <script>
-                    $("#edit".click(function (event) {
-                        $.ajax({
-                            type:'PUT',
-                            url: <?php echo $url ?>,
-                            success: function(msg) {
-                                alert("Bežec bol upravený");
-                                location.reload();
-                            },
-                            error: function(e) {
-                                $inputs.prop("disabled", false);
-                                console.log(e);
-                                alert("Nastala chyba");
-                            }
-                        })
-                    })
-                </script>
-
+                <button type="submit" class="btn btn-primary col-md-12">Upraviť</button>
             </div>
         </div>
 

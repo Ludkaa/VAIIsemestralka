@@ -42,7 +42,7 @@ unset($_SESSION["heslo"]);
 <script>
     setTimeout(function(){
         window.location.href = "http://dbtsp.jecool.net/PridajSa.php";
-    }, 5000);
+    }, 3000);
 </script>
 
 

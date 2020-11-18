@@ -47,10 +47,10 @@
                     type: "post",
                     data: data,
                     dataType: "json",
-                    success: function(msg) {
-                        window.location.href="/FormSent.php";
+                    success: function (msg) {
+                        window.location.href = "/FormSent.php";
                     },
-                    error: function(e) {
+                    error: function (e) {
                         $inputs.prop("disabled", false);
                         console.log(e);
                     }
@@ -68,10 +68,10 @@
 
 <?php
 include 'header.php';
-if((!empty($_SESSION['valid']))) {
-    $_SESSION['valid']=1;
+if ((!empty($_SESSION['valid']))) {
+    $_SESSION['valid'] = 1;
 } else {
-    $_SESSION['valid']=0;
+    $_SESSION['valid'] = 0;
 }
 ?>
 
@@ -86,8 +86,8 @@ if((!empty($_SESSION['valid']))) {
     <form id="form">
         <div class="form-row col-lg-10 stred">
             <div class="form-group col-lg-6">
-                <label><b>Meno</b></label>
-                <input type="text" class="form-control" placeholder="Meno " name="meno" required>
+                <label ><b>Meno</b></label>
+                <input type="text" class="form-control" placeholder="Meno " name="meno" required >
             </div>
             <div class="form-group col-lg-6">
                 <label><b>Priezvisko</b></label>
@@ -105,17 +105,17 @@ if((!empty($_SESSION['valid']))) {
                 <div class="row">
                     <div class="col-form-label col-sm-2 pt-0"><b>Dĺžka trate</b></div>
                     <div class="col-sm-10">
-                        <div class="form-check" >
+                        <div class="form-check">
                             <input class="form-check-input" type="radio" name="trat" id="gridRadios1"
                                    value="4,5 km" required>
-                            <label class="form-check-label" for="gridRadios1" >
+                            <label class="form-check-label" for="gridRadios1">
                                 4,5 km
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="trat" id="gridRadios2"
                                    value="12,5 km" required>
-                            <label class="form-check-label" for="gridRadios2" >
+                            <label class="form-check-label" for="gridRadios2">
                                 12,5 km
                             </label>
                         </div>
@@ -144,7 +144,7 @@ if((!empty($_SESSION['valid']))) {
             <h2 class="nadpis"><strong> Zoznam prihlásených: </strong></h2>
             <br>
         </div>
-        <table class="table col-lg-10">
+        <table class="table col-lg-10 stred">
             <?php
                 $url = "https://dbtspapi.herokuapp.com/runners";
                 $ch = curl_init();
@@ -156,41 +156,57 @@ if((!empty($_SESSION['valid']))) {
 
                 $Data = json_decode($response);
 
+                function getYear($pdate) {
+                $date = DateTime::createFromFormat("Y-m-d", $pdate);
+                return $date->format("Y");
+                }
 
-                echo "<tr><th></th><th>Meno</th> <th>Priezvisko</th> <th>Dátum narodenia</th> <th>Trať</th>  <th></th> <th> </th></tr>";
+                echo "<tr><th></th><th>Meno</th> <th>Priezvisko</th> <th>Rok narodenia</th> <th>Trať</th>  <th></th> <th> </th></tr>";
 
                 for ($i = 0; $i < sizeof($Data->data); $i++){
-                echo "<tr><td> ".($i+1)." </td><td>" .$Data->data[$i]->meno ."</td> <td>".$Data->data[$i]->priezvisko."</td> <td>".$Data->data[$i]->birthday."</td> <td>".$Data->data[$i]->trat."</td> "?>
-                <td> <a href="http://dbtsp.jecool.net/Edit.php?id=<?php echo $Data->data[$i]->id ?>" id="edit<?php echo $i ?>" type="button" class="btn btn-info <?php if(($_SESSION["valid"] != 1)) { echo "skry";} ?>">Editovať</a>
+                echo "<tr><td> ".($i+1)." </td>
+                <td>" .$Data->data[$i]->meno ."</td> 
+                <td>" .$Data->data[$i]->priezvisko."</td> 
+                <td>". getYear($Data->data[$i]->birthday) ."</td> 
+                <td>" .$Data->data[$i]->trat."</td> "?>
+                <td><a href="http://dbtsp.jecool.net/Edit.php?id=<?php echo $Data->data[$i]->id ?>"
+                   id="edit<?php echo $i ?>" type="button" class="btn btn-info <?php if (($_SESSION["valid"] != 1)) {
+                    echo "skry";
+                } ?>">Editovať</a>
 
-                </td>
+            </td>
 
-                    <td> <button type="button" id="delete<?php echo $i ?>" class="btn btn-secondary <?php if(($_SESSION["valid"] != 1)) { echo "skry";} ?>">Vymazať</button>
-                        <script>
-                            $("#delete" + <?php echo $i ?>).click(function (event) {
-                                let del_id = "<?php echo $Data->data[$i]->id ?>";
-                                $.ajax({
-                                    type:'DELETE',
-                                    url: "https://dbtspapi.herokuapp.com/runner/"+del_id,
-                                    success: function(msg) {
-                                        alert("Bežec bol odstránený");
-                                        location.reload();
-                                    },
-                                    error: function(e) {
-                                        $inputs.prop("disabled", false);
-                                        console.log(e);
-                                        alert("Nastala chyba");
-                                    }
-                                })
-                            })
-                        </script>
+            <td>
+                <button type="button" id="delete<?php echo $i ?>"
+                        class="btn btn-secondary <?php if (($_SESSION["valid"] != 1)) {
+                            echo "skry";
+                        } ?>">Vymazať
+                </button>
+                <script>
+                    $("#delete" + <?php echo $i ?>).click(function (event) {
+                        let del_id = "<?php echo $Data->data[$i]->id ?>";
+                        $.ajax({
+                            type: 'DELETE',
+                            url: "https://dbtspapi.herokuapp.com/runner/" + del_id,
+                            success: function (msg) {
+                                alert("Bežec bol odstránený");
+                                location.reload();
+                            },
+                            error: function (e) {
+                                $inputs.prop("disabled", false);
+                                console.log(e);
+                                alert("Nastala chyba");
+                            }
+                        })
+                    })
+                </script>
 
-                    </td></tr>
+            </td>
+            </tr>
 
 
-
-                    <?php }
-           ?>
+            <?php }
+            ?>
         </table>
     </div>
 
