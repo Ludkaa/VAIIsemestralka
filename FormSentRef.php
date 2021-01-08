@@ -14,7 +14,7 @@
     <script crossorigin="anonymous"
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
             src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="img/logo.png" rel="icon" type="image/png">
+    <link href="http://www.detvabehataksapridaj.6f.sk/assets/images/logo.png" rel="icon" type="image/png">
     <link href="1.css" rel="stylesheet">
 
 
@@ -22,8 +22,7 @@
 <body class="telo">
 
 <?php
-include 'header.php';
-$_SESSION['valid'] = 1;
+include 'header.php'
 ?>
 
 
@@ -31,17 +30,16 @@ $_SESSION['valid'] = 1;
 <div class="col-lg-8 text">
     <div class="text-center">
         <br>
-        <h2 class="nadpis"><strong> Boli ste úspešne prihlásení! </strong></h2>
+        <h2 class="nadpis"><strong> Vaše údaje boli odoslané! </strong></h2>
         <br>
     </div>
 
 
 <script>
     setTimeout(function(){
-        window.location.href = "http://dbtsp.jecool.net/PridajSa.php";
+        window.location.href = "http://dbtsp.jecool.net/PovedaliOnas.php";
     }, 3000);
 </script>
-
 
 
 

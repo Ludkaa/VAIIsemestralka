@@ -14,7 +14,7 @@
     <script crossorigin="anonymous"
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
             src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="http://www.detvabehataksapridaj.6f.sk/assets/images/logo.png" rel="icon" type="image/png">
+    <link href="img/logo.png" rel="icon" type="image/png">
     <link href="1.css" rel="stylesheet">
 
 </head>

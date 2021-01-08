@@ -59,7 +59,7 @@
 
         });
     </script>
-    <link href="http://www.detvabehataksapridaj.6f.sk/assets/images/logo.png" rel="icon" type="image/png">
+    <link href="img/logo.png" rel="icon" type="image/png">
     <link href="1.css" rel="stylesheet">
 
 

@@ -3,7 +3,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 session_start();
 ?>
 <nav class="navbar navbar-expand-lg bg-light obrazok" >
-    <img src="http://www.detvabehataksapridaj.6f.sk/assets/images/logo.png" alt="logo">
+    <img src="img/logo.png" alt="logo">
     <a class="navbar-brand nadpis-dbtsp" href="http://dbtsp.jecool.net/"><?php echo $nadpis;  ?>
     </a>
     <button class="navbar-toggler navbar-light " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,9 @@ session_start();
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if(( $url=="http://dbtsp.jecool.net/PridajSa.php")) {echo "active";}?>" href="http://dbtsp.jecool.net/PridajSa.php" tabindex="-1" aria-disabled="true">Pridaj sa!</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php if(( $url=="http://dbtsp.jecool.net/PovedaliOnas.php")) {echo "active";}?>" href="http://dbtsp.jecool.net/PovedaliOnas.php" tabindex="-1" aria-disabled="true">Povedali o nás</a>
             </li>
             <li class="nav-item border-left <?php if(($_SESSION["valid"] != 1)) { echo "skry";} ?>">
                 <a class="nav-link <?php if(( $url=="http://dbtsp.jecool.net/LogoutAdmin.php")) {echo "active";}?>" href="http://dbtsp.jecool.net/LogoutAdmin.php" tabindex="-1" aria-disabled="true">Odhlásiť sa</a>

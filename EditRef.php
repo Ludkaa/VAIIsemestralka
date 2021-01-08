@@ -43,13 +43,13 @@
                 $inputs.prop("disabled", true);
 
                 $.ajax({
-                    url: "<?php echo "https://dbtspapi.herokuapp.com/runner/".$_GET['id']?>",
+                    url: "<?php echo "https://dbtspapi.herokuapp.com/referencia/".$_GET['id']?>",
                     type: "put",
                     data: data,
                     dataType: "json",
                     success: function(msg) {
                         alert("Údaje boli upravené");
-                        window.location.href = "/PridajSa.php";
+                        window.location.href = "/PovedaliOnas.php";
                     },
                     error: function(e) {
                         $inputs.prop("disabled", false);
@@ -76,7 +76,7 @@ if((!empty($_SESSION['valid']))) {
 }
 
 
-$url = "https://dbtspapi.herokuapp.com/runner/".$_GET['id'];
+$url = "https://dbtspapi.herokuapp.com/referencia/".$_GET['id'];
 $ch = curl_init();
 curl_setopt_array($ch, [
     CURLOPT_URL => $url,
@@ -86,69 +86,35 @@ $response = curl_exec($ch);
 
 $Data = json_decode($response)->data;
 $meno=$Data->meno;
-$priezvisko=$Data->priezvisko;
-$datum=$Data->birthday;
 $email=$Data->email;
-$trat=$Data->trat;
+$text=$Data->text;
 ?>
 
 
 <div class="col-lg-8 text">
     <div class="text-center">
         <br>
-        <h2 class="nadpis"><strong> Editovanie účastníka </strong></h2>
+        <h2 class="nadpis"><strong> Editovanie príspevku </strong></h2>
         <br>
     </div>
 
     <form id="edit">
         <div class="form-row col-lg-10 stred">
             <div class="form-group col-lg-6">
-                <label><b>Meno</b></label>
-                <input type="text" class="form-control" placeholder="Meno " name="meno" value="<?php echo $meno ?>" required>
+                <label ><b>Meno</b></label>
+                <input type="text" class="form-control" placeholder="Meno " name="meno" value="<?php echo $meno ?>" required >
             </div>
             <div class="form-group col-lg-6">
-                <label><b>Priezvisko</b></label>
-                <input type="text" class="form-control" placeholder="Priezvisko " name="priezvisko" value="<?php echo $priezvisko ?>" required>
-            </div>
-            <div class="form-group col-md-12 ">
-                <label><b>Dátum narodenia:</b></label>
-                <input type="date" class="form-control " name="birthday" value="<?php echo $datum ?>" required>
-            </div>
-            <div class="form-group col-md-12">
                 <label for="inputEmail4"><b>Email</b></label>
                 <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" value="<?php echo $email ?>" required>
             </div>
-            <fieldset class="form-group col-md-12">
-                <div class="row">
-                    <div class="col-form-label col-sm-2 pt-0"><b>Dĺžka trate</b></div>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="trat" id="gridRadios1"
-                                   value="4,5 km" <?php if(('4,5 km' == $trat)) { echo "checked";} ?> required >
-                            <label class="form-check-label" for="gridRadios1">
-                                4,5 km
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="trat" id="gridRadios2"
-                                   value="12,5 km" <?php if(('12,5 km' == $trat)) { echo "checked";} ?> required >
-                            <label class="form-check-label" for="gridRadios2">
-                                12,5 km
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-            <div class="form-group col-md-12"><br>
-                <div class="form-check col-md-12 ">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" value="true" name="suhlas" checked required>
-                    <label class="form-check-label" for="gridCheck">
-                        Súhlasím so spracovaním svojich údajov pre potreby organizátora.
-                    </label>
-                </div>
+            <div class="form-group col-lg-12">
+                <label><b>Text</b></label>
+                <textarea type="text" class="form-control" rows="5" id="text" placeholder="Tu nám zanechajte svoj odkaz :)" name="text" required> <?php echo $text; ?>  </textarea>
             </div>
+
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary col-md-12">Upraviť</button>
+                <button type="submit" class="btn btn-primary col-md-12">Odoslať</button>
             </div>
         </div>
 
