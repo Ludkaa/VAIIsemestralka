@@ -86,12 +86,14 @@ if ((!empty($_SESSION['valid']))) {
     <form id="form">
         <div class="form-row col-lg-10 stred">
             <div class="form-group col-lg-6">
-                <label ><b>Meno</b></label>
-                <input type="text" class="form-control" placeholder="Meno " name="meno" required >
+                <label><b>Meno</b></label>
+                <input type="text" class="form-control" placeholder="Meno " name="meno" required
+                       pattern="([A-zÀ-ž]){2,}">
             </div>
             <div class="form-group col-lg-6">
                 <label><b>Priezvisko</b></label>
-                <input type="text" class="form-control" placeholder="Priezvisko " name="priezvisko" required>
+                <input type="text" class="form-control" placeholder="Priezvisko " name="priezvisko" required
+                       pattern="([A-zÀ-ž]){2,}">
             </div>
             <div class="form-group col-md-12">
                 <label><b>Dátum narodenia:</b></label>
@@ -138,7 +140,7 @@ if ((!empty($_SESSION['valid']))) {
     </form>
     <br><br>
 
-    <div class="col-lg-8 text">
+    <div class="col-lg-8 table text">
         <div class="text-center">
             <br>
             <h2 class="nadpis"><strong> Zoznam prihlásených: </strong></h2>
@@ -146,63 +148,63 @@ if ((!empty($_SESSION['valid']))) {
         </div>
         <table class="table col-lg-10 stred">
             <?php
-                $url = "https://dbtspapi.herokuapp.com/runners";
-                $ch = curl_init();
-                curl_setopt_array($ch, [
-                    CURLOPT_URL            =>$url,
-                ]);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
+            $url = "https://dbtspapi.herokuapp.com/runners";
+            $ch = curl_init();
+            curl_setopt_array($ch, [
+                CURLOPT_URL => $url,
+            ]);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
 
-                $Data = json_decode($response);
+            $Data = json_decode($response);
 
-                function getYear($pdate) {
+            function getYear($pdate)
+            {
                 $date = DateTime::createFromFormat("Y-m-d", $pdate);
                 return $date->format("Y");
-                }
+            }
 
-                echo "<tr><th></th><th>Meno</th> <th>Priezvisko</th> <th>Rok narodenia</th> <th>Trať</th>  <th></th> <th> </th></tr>";
+            echo "<tr><th></th><th>Meno</th> <th>Priezvisko</th> <th>Rok narodenia</th> <th>Trať</th>  <th></th> <th> </th></tr>";
 
-                for ($i = 0; $i < sizeof($Data->data); $i++){
-                echo "<tr><td> ".($i+1)." </td>
-                <td>" .$Data->data[$i]->meno ."</td> 
-                <td>" .$Data->data[$i]->priezvisko."</td> 
-                <td>". getYear($Data->data[$i]->birthday) ."</td> 
-                <td>" .$Data->data[$i]->trat."</td> "?>
+            for ($i = 0; $i < sizeof($Data->data); $i++) {
+                echo "<tr><td> " . ($i + 1) . " </td>
+                <td>" . $Data->data[$i]->meno . "</td> 
+                <td>" . $Data->data[$i]->priezvisko . "</td> 
+                <td>" . getYear($Data->data[$i]->birthday) . "</td> 
+                <td>" . $Data->data[$i]->trat . "</td> " ?>
                 <td><a href="http://dbtsp.jecool.net/Edit.php?id=<?php echo $Data->data[$i]->id ?>"
-                   id="edit<?php echo $i ?>" type="button" class="btn btn-info <?php if (($_SESSION["valid"] != 1)) {
-                    echo "skry";
-                } ?>">Editovať</a>
+                       id="edit<?php echo $i ?>" class="btn btn-info <?php if (($_SESSION["valid"] != 1)) {
+                        echo "skry";
+                    } ?>">Editovať</a>
 
-            </td>
+                </td>
 
-            <td>
-                <button type="button" id="delete<?php echo $i ?>"
-                        class="btn btn-secondary <?php if (($_SESSION["valid"] != 1)) {
-                            echo "skry";
-                        } ?>">Vymazať
-                </button>
-                <script>
-                    $("#delete" + <?php echo $i ?>).click(function (event) {
-                        let del_id = "<?php echo $Data->data[$i]->id ?>";
-                        $.ajax({
-                            type: 'DELETE',
-                            url: "https://dbtspapi.herokuapp.com/runner/" + del_id,
-                            success: function (msg) {
-                                alert("Bežec bol odstránený");
-                                location.reload();
-                            },
-                            error: function (e) {
-                                $inputs.prop("disabled", false);
-                                console.log(e);
-                                alert("Nastala chyba");
-                            }
+                <td>
+                    <button type="button" id="delete<?php echo $i ?>"
+                            class="btn btn-secondary <?php if (($_SESSION["valid"] != 1)) {
+                                echo "skry";
+                            } ?>">Vymazať
+                    </button>
+                    <script>
+                        $("#delete" + <?php echo $i ?>).click(function (event) {
+                            let del_id = "<?php echo $Data->data[$i]->id ?>";
+                            $.ajax({
+                                type: 'DELETE',
+                                url: "https://dbtspapi.herokuapp.com/runner/" + del_id,
+                                success: function (msg) {
+                                    alert("Bežec bol odstránený");
+                                    location.reload();
+                                },
+                                error: function (e) {
+                                    $inputs.prop("disabled", false);
+                                    console.log(e);
+                                    alert("Nastala chyba");
+                                }
+                            })
                         })
-                    })
-                </script>
+                    </script>
 
-            </td>
-            </tr>
+                </td>
 
 
             <?php }

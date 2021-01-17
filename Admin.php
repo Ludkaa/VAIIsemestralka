@@ -48,10 +48,10 @@
                     type: "post",
                     data: data,
                     dataType: "json",
-                    success: function(msg) {
-                        window.location.href="/LogAdmin.php";
+                    success: function (msg) {
+                        window.location.href = "/LogAdmin.php";
                     },
-                    error: function(e) {
+                    error: function (e) {
                         $inputs.prop("disabled", false);
                         console.log(e);
                         alert("Zadali ste nesprávne meno alebo heslo!");
@@ -70,7 +70,6 @@
 <?php
 include 'header.php'
 ?>
-
 
 
 <div class="col-lg-8 stred">
@@ -103,8 +102,6 @@ include 'header.php'
     include 'footer.php'
     ?>
 </div>
-
-
 
 
 </body>

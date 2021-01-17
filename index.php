@@ -81,27 +81,26 @@ include 'header.php'
     <h2 class="odpoc"><strong> Do pretekov zostáva </strong></h2>
 </div>
 
-    <div class="container countdown-cont col-lg-5 nadpis-prop align-center">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-3"><span class="number-wrap"><span
-                                class="number display-2" id="dni"></span><span mbr-text="dni" class="period display-7">dní</span><span
-                                class="dot">:</span></span></div>
-                <div class="col-xs-12 col-sm-6 col-md-3"><span class="number-wrap"><span
-                                class="number display-2" id="hodiny"></span><span mbr-text="hodiny"
-                                                                        class="period display-7">hodín</span><span
-                                class="dot">:</span></span></div>
-                <div class="col-xs-12 col-sm-6 col-md-3"><span class="number-wrap"><span
-                                class="number display-2" id="minuty"></span><span mbr-text="minuty"
-                                                                        class="period display-7">minút</span><span
-                                class="dot">:</span></span></div>
-                <div class="col-xs-12 col-sm-6 col-md-3"><span class="number-wrap"><span
-                                class="number display-2" id="sekundy"></span><span mbr-text="sekundy"
-                                                                        class="period display-7">sekúnd</span></span>
-                </div>
-            </div>
+<div class="container countdown-cont col-lg-5 nadpis-prop align-center">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3"><span class="number-wrap"><span
+                        class="number display-2" id="dni"></span><span class="period display-7">dní</span><span
+                        class="dot">:</span></span></div>
+        <div class="col-xs-12 col-sm-6 col-md-3"><span class="number-wrap"><span
+                        class="number display-2" id="hodiny"></span><span
+                        class="period display-7">hodín</span><span
+                        class="dot">:</span></span></div>
+        <div class="col-xs-12 col-sm-6 col-md-3"><span class="number-wrap"><span
+                        class="number display-2" id="minuty"></span><span
+                        class="period display-7">minút</span><span
+                        class="dot">:</span></span></div>
+        <div class="col-xs-12 col-sm-6 col-md-3"><span class="number-wrap"><span
+                        class="number display-2" id="sekundy"></span><span
+                        class="period display-7">sekúnd</span></span>
         </div>
     </div>
-</section>
+</div>
+
 
 <script>
     var datumPretekov = new Date("Apr 22, 2021 15:37:25").getTime();
@@ -117,10 +116,10 @@ include 'header.php'
         var minuty = Math.floor((zostavajuciCas % (1000 * 60 * 60)) / (1000 * 60));
         var sekundy = Math.floor((zostavajuciCas % (1000 * 60)) / 1000);
 
-        document.getElementById("dni").innerHTML = dni  ;
-        document.getElementById("hodiny").innerHTML = hodiny  ;
-        document.getElementById("minuty").innerHTML = minuty  ;
-        document.getElementById("sekundy").innerHTML = sekundy  ;
+        document.getElementById("dni").innerHTML = dni;
+        document.getElementById("hodiny").innerHTML = hodiny;
+        document.getElementById("minuty").innerHTML = minuty;
+        document.getElementById("sekundy").innerHTML = sekundy;
 
         if (distance < 0) {
             clearInterval(x);

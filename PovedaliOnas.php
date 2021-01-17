@@ -71,7 +71,7 @@
         });
     </script>
     <link rel="stylesheet" href="1.css">
-    <link rel="icon" type="image/png" src="img/logo.png">
+    <link rel="icon" type="image/png" href="img/logo.png">
 
 
 </head>
@@ -93,7 +93,6 @@ if ((!empty($_SESSION['valid']))) {
             <h2 class="nadpis"><strong> Povedali o nás: </strong></h2>
             <br>
         </div>
-
 
         <?php
         $url = "https://dbtspapi.herokuapp.com/referencie";
@@ -117,7 +116,7 @@ if ((!empty($_SESSION['valid']))) {
 
 
                 <a href="http://dbtsp.jecool.net/EditRef.php?id=<?php echo $Data->data[$i]->id ?>"
-                   id="edit<?php echo $i ?>" type="button"
+                   id="edit<?php echo $i ?>"
                    class="btn btn-info forumTlacitka <?php if (($_SESSION["valid"] != 1)) {
                        echo "skry";
                    } ?>">Editovať</a>
@@ -128,7 +127,6 @@ if ((!empty($_SESSION['valid']))) {
                         } ?>">Vymazať
                 </button>
             </div>
-
             <script>
                 $("#delete" + <?php echo $i ?>).click(function (event) {
                     let del_id = "<?php echo $Data->data[$i]->id ?>";
@@ -162,7 +160,8 @@ if ((!empty($_SESSION['valid']))) {
             <div class="form-row col-lg-10 stred">
                 <div class="form-group col-lg-6">
                     <label><b>Meno</b></label>
-                    <input type="text" class="form-control" placeholder="Meno " name="meno" required>
+                    <input type="text" class="form-control" placeholder="Meno " name="meno" required
+                           pattern="([A-zÀ-ž]){2,}">
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="inputEmail4"><b>Email</b></label>
@@ -170,7 +169,7 @@ if ((!empty($_SESSION['valid']))) {
                 </div>
                 <div class="form-group col-lg-12">
                     <label><b>Text</b></label>
-                    <textarea type="text" class="form-control" rows="5" id="text"
+                    <textarea minlength="1" class="form-control" rows="5" id="text"
                               placeholder="Tu nám zanechajte svoj odkaz :)" name="text" required></textarea>
                 </div>
 
@@ -178,17 +177,13 @@ if ((!empty($_SESSION['valid']))) {
                     <button type="submit" class="btn btn-primary col-md-12">Odoslať</button>
                 </div>
             </div>
-
         </form>
-
-
     </div>
-
 
     <?php
     include 'footer.php'
     ?>
-
+</div>
 
 </body>
 </html>

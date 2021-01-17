@@ -33,10 +33,10 @@ include 'header.php'
     </div>
 
 
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" >
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="mySlides  carousel-item active">
-                <img class="d-block w-100"  src="img/v21.png" alt="First slide">
+                <img class="d-block w-100" src="img/v21.png" alt="First slide">
             </div>
             <div class="mySlides carousel-item">
                 <img class="d-block w-100" src="img/v22.png" alt="Second slide">
@@ -55,7 +55,7 @@ include 'header.php'
         </a>
     </div>
 
-    <div >
+    <div>
         <?php
         include 'footer.php'
         ?>

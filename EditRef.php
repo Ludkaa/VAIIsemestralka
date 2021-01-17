@@ -43,15 +43,15 @@
                 $inputs.prop("disabled", true);
 
                 $.ajax({
-                    url: "<?php echo "https://dbtspapi.herokuapp.com/referencia/".$_GET['id']?>",
+                    url: "<?php echo "https://dbtspapi.herokuapp.com/referencia/" . $_GET['id']?>",
                     type: "put",
                     data: data,
                     dataType: "json",
-                    success: function(msg) {
+                    success: function (msg) {
                         alert("Údaje boli upravené");
                         window.location.href = "/PovedaliOnas.php";
                     },
-                    error: function(e) {
+                    error: function (e) {
                         $inputs.prop("disabled", false);
                         console.log(e);
                     }
@@ -60,7 +60,7 @@
 
         });
     </script>
-    <link rel="icon" type="image/png" src="img/logo.png">
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link href="1.css" rel="stylesheet">
 
 
@@ -69,14 +69,14 @@
 
 <?php
 include 'header.php';
-if((!empty($_SESSION['valid']))) {
-    $_SESSION['valid']=1;
+if ((!empty($_SESSION['valid']))) {
+    $_SESSION['valid'] = 1;
 } else {
-    $_SESSION['valid']=0;
+    $_SESSION['valid'] = 0;
 }
 
 
-$url = "https://dbtspapi.herokuapp.com/referencia/".$_GET['id'];
+$url = "https://dbtspapi.herokuapp.com/referencia/" . $_GET['id'];
 $ch = curl_init();
 curl_setopt_array($ch, [
     CURLOPT_URL => $url,
@@ -85,9 +85,9 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($ch);
 
 $Data = json_decode($response)->data;
-$meno=$Data->meno;
-$email=$Data->email;
-$text=$Data->text;
+$meno = $Data->meno;
+$email = $Data->email;
+$text = $Data->text;
 ?>
 
 
@@ -101,16 +101,20 @@ $text=$Data->text;
     <form id="edit">
         <div class="form-row col-lg-10 stred">
             <div class="form-group col-lg-6">
-                <label ><b>Meno</b></label>
-                <input type="text" class="form-control" placeholder="Meno " name="meno" value="<?php echo $meno ?>" required >
+                <label><b>Meno</b></label>
+                <input type="text" class="form-control" placeholder="Meno " name="meno" value="<?php echo $meno ?>"
+                       required pattern="([A-zÀ-ž]){2,}">
             </div>
             <div class="form-group col-lg-6">
                 <label for="inputEmail4"><b>Email</b></label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" value="<?php echo $email ?>" required>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email"
+                       value="<?php echo $email ?>" required>
             </div>
             <div class="form-group col-lg-12">
                 <label><b>Text</b></label>
-                <textarea type="text" class="form-control" rows="5" id="text" placeholder="Tu nám zanechajte svoj odkaz :)" name="text" required> <?php echo $text; ?>  </textarea>
+                <textarea minlength="1" class="form-control" rows="5" id="text"
+                          placeholder="Tu nám zanechajte svoj odkaz :)" name="text"
+                          required pattern="([A-zÀ-ž]){2,}"> <?php echo $text; ?>  </textarea>
             </div>
 
             <div class="col-md-12">
@@ -121,7 +125,7 @@ $text=$Data->text;
     </form>
     <br><br>
 
-
+</div>
 
 
 </body>

@@ -43,15 +43,15 @@
                 $inputs.prop("disabled", true);
 
                 $.ajax({
-                    url: "<?php echo "https://dbtspapi.herokuapp.com/runner/".$_GET['id']?>",
+                    url: "<?php echo "https://dbtspapi.herokuapp.com/runner/" . $_GET['id']?>",
                     type: "put",
                     data: data,
                     dataType: "json",
-                    success: function(msg) {
+                    success: function (msg) {
                         alert("Údaje boli upravené");
                         window.location.href = "/PridajSa.php";
                     },
-                    error: function(e) {
+                    error: function (e) {
                         $inputs.prop("disabled", false);
                         console.log(e);
                     }
@@ -60,7 +60,7 @@
 
         });
     </script>
-    <link rel="icon" type="image/png" src="img/logo.png">
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link href="1.css" rel="stylesheet">
 
 
@@ -69,14 +69,14 @@
 
 <?php
 include 'header.php';
-if((!empty($_SESSION['valid']))) {
-    $_SESSION['valid']=1;
+if ((!empty($_SESSION['valid']))) {
+    $_SESSION['valid'] = 1;
 } else {
-    $_SESSION['valid']=0;
+    $_SESSION['valid'] = 0;
 }
 
 
-$url = "https://dbtspapi.herokuapp.com/runner/".$_GET['id'];
+$url = "https://dbtspapi.herokuapp.com/runner/" . $_GET['id'];
 $ch = curl_init();
 curl_setopt_array($ch, [
     CURLOPT_URL => $url,
@@ -85,11 +85,11 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($ch);
 
 $Data = json_decode($response)->data;
-$meno=$Data->meno;
-$priezvisko=$Data->priezvisko;
-$datum=$Data->birthday;
-$email=$Data->email;
-$trat=$Data->trat;
+$meno = $Data->meno;
+$priezvisko = $Data->priezvisko;
+$datum = $Data->birthday;
+$email = $Data->email;
+$trat = $Data->trat;
 ?>
 
 
@@ -104,11 +104,13 @@ $trat=$Data->trat;
         <div class="form-row col-lg-10 stred">
             <div class="form-group col-lg-6">
                 <label><b>Meno</b></label>
-                <input type="text" class="form-control" placeholder="Meno " name="meno" value="<?php echo $meno ?>" required>
+                <input type="text" class="form-control" placeholder="Meno " name="meno" value="<?php echo $meno ?>"
+                       required pattern="([A-zÀ-ž]){2,}">
             </div>
             <div class="form-group col-lg-6">
                 <label><b>Priezvisko</b></label>
-                <input type="text" class="form-control" placeholder="Priezvisko " name="priezvisko" value="<?php echo $priezvisko ?>" required>
+                <input type="text" class="form-control" placeholder="Priezvisko " name="priezvisko"
+                       value="<?php echo $priezvisko ?>" required pattern="([A-zÀ-ž]){2,}">
             </div>
             <div class="form-group col-md-12 ">
                 <label><b>Dátum narodenia:</b></label>
@@ -116,7 +118,8 @@ $trat=$Data->trat;
             </div>
             <div class="form-group col-md-12">
                 <label for="inputEmail4"><b>Email</b></label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" value="<?php echo $email ?>" required>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email"
+                       value="<?php echo $email ?>" required>
             </div>
             <fieldset class="form-group col-md-12">
                 <div class="row">
@@ -124,14 +127,18 @@ $trat=$Data->trat;
                     <div class="col-sm-10">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="trat" id="gridRadios1"
-                                   value="4,5 km" <?php if(('4,5 km' == $trat)) { echo "checked";} ?> required >
+                                   value="4,5 km" <?php if (('4,5 km' == $trat)) {
+                                echo "checked";
+                            } ?> required>
                             <label class="form-check-label" for="gridRadios1">
                                 4,5 km
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="trat" id="gridRadios2"
-                                   value="12,5 km" <?php if(('12,5 km' == $trat)) { echo "checked";} ?> required >
+                                   value="12,5 km" <?php if (('12,5 km' == $trat)) {
+                                echo "checked";
+                            } ?> required>
                             <label class="form-check-label" for="gridRadios2">
                                 12,5 km
                             </label>
@@ -141,7 +148,8 @@ $trat=$Data->trat;
             </fieldset>
             <div class="form-group col-md-12"><br>
                 <div class="form-check col-md-12 ">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" value="true" name="suhlas" checked required>
+                    <input class="form-check-input" type="checkbox" id="gridCheck" value="true" name="suhlas" checked
+                           required>
                     <label class="form-check-label" for="gridCheck">
                         Súhlasím so spracovaním svojich údajov pre potreby organizátora.
                     </label>
@@ -154,8 +162,7 @@ $trat=$Data->trat;
 
     </form>
     <br><br>
-
-
+</div>
 
 
 </body>

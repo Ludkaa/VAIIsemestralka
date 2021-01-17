@@ -26,7 +26,6 @@ include 'header.php'
 ?>
 
 
-
 <div class="col-lg-8 text">
     <div class="text-center">
         <br>
@@ -35,12 +34,11 @@ include 'header.php'
     </div>
 
 
-<script>
-    setTimeout(function(){
-        window.location.href = "http://dbtsp.jecool.net/PovedaliOnas.php";
-    }, 3000);
-</script>
-
+    <script>
+        setTimeout(function () {
+            window.location.href = "http://dbtsp.jecool.net/PovedaliOnas.php";
+        }, 3000);
+    </script>
 
 
 </body>

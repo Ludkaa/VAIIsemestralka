@@ -27,7 +27,6 @@ $_SESSION['valid'] = 1;
 ?>
 
 
-
 <div class="col-lg-8 text">
     <div class="text-center">
         <br>
@@ -36,13 +35,12 @@ $_SESSION['valid'] = 1;
     </div>
 
 
-<script>
-    setTimeout(function(){
-        window.location.href = "http://dbtsp.jecool.net/PridajSa.php";
-    }, 3000);
-</script>
-
-
+    <script>
+        setTimeout(function () {
+            window.location.href = "http://dbtsp.jecool.net/PridajSa.php";
+        }, 3000);
+    </script>
+</div>
 
 
 </body>

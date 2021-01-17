@@ -30,7 +30,6 @@ unset($_SESSION["heslo"]);
 ?>
 
 
-
 <div class="col-lg-8 text">
     <div class="text-center">
         <br>
@@ -39,13 +38,13 @@ unset($_SESSION["heslo"]);
     </div>
 
 
-<script>
-    setTimeout(function(){
-        window.location.href = "http://dbtsp.jecool.net/PridajSa.php";
-    }, 3000);
-</script>
+    <script>
+        setTimeout(function () {
+            window.location.href = "http://dbtsp.jecool.net/PridajSa.php";
+        }, 3000);
+    </script>
 
-
+</div>
 
 
 </body>
